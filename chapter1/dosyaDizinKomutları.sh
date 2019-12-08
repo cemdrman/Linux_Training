@@ -98,7 +98,7 @@ o: others
 
 Aşağıdaki komutlar yukarıdaki çıktı üzerinden örneklendirilecektir.
 
-dosya1 group rolünde write izni mevcut. dosya2 iki için de aynı izni verelim.
+1) dosya1 group rolünde write izni mevcut. dosya2 iki için de aynı izni verelim.
 	
 	chmod g+w dosya2
 	ls -l
@@ -106,7 +106,7 @@ dosya1 group rolünde write izni mevcut. dosya2 iki için de aynı izni verelim.
 	-rw-rw-r--  1 cemdirman  staff     0 27 Eyl 22:45 dosya1
     -rw-rw-r--  1 cemdirman  staff     0 27 Eyl 22:45 dosya2
 
-dosya1 ve dosya2 group ve others rw yetkilerini alalım ve sadece dosyanın sahibi bu izinlere sahip olsun.
+2) dosya1 ve dosya2 group ve others rw yetkilerini alalım ve sadece dosyanın sahibi bu izinlere sahip olsun.
 
 	chmod go-rw dosya1 dosya2
 	ls -l
@@ -114,7 +114,7 @@ dosya1 ve dosya2 group ve others rw yetkilerini alalım ve sadece dosyanın sahi
     -rw-------  1 cemdirman  staff     0 27 Eyl 22:45 dosya1
     -rw-------  1 cemdirman  staff     0 27 Eyl 22:45 dosya2
 
-dosya1 ve dosya2 sahibi execute iznine de sahip olsun.
+3) dosya1 ve dosya2 sahibi execute iznine de sahip olsun.
 
 	chmod u+x dosya1 dosya2
     ls -l
@@ -122,7 +122,36 @@ dosya1 ve dosya2 sahibi execute iznine de sahip olsun.
     -rwx------  1 cemdirman  staff     0 27 Eyl 22:45 dosya1
     -rwx------  1 cemdirman  staff     0 27 Eyl 22:45 dosya2
 
+4) dosya1 ve dosya2 sahibinden execute iznini alalım.
 
+	chmod u-x dosya1 dosya2
+	ls -l
+
+	-rw-------  1 cemdirman  staff     0 27 Eyl 22:45 dosya1
+    -rw-------  1 cemdirman  staff     0 27 Eyl 22:45 dosya2
+
+5) şimdi ise execute iznini bütün gruplara verelim.
+
+	chmod +x dosya1 dosya2   								: eğer herhangi bir group(u,g,o) belirtmezseniz aşağıda gördüğünüz üzere hepsine verecektir.
+    ls -l
+
+    -rw-r--r--@ 1 cemdirman  staff  1107 26 Eyl 12:16 bilgiAlmaKomutları.sh
+    -rwx--x--x  1 cemdirman  staff     0 27 Eyl 22:45 dosya1
+    -rwx--x--x  1 cemdirman  staff     0 27 Eyl 22:45 dosya2
+
+ Yetki işlemlerini rakamlarla yapma da mümkün.
+
+ r: 4
+ w: 2
+ x: 1      		değerlerine sahip. Toplamı ise 7 yaptığı için bütün izinleri vermek istediğinizde bu değer yeterli olacaktır.
+
+6) dosya1 ve dosya2 sahibi bütün izinlere, group rw ve others ise hiç bir izne sahip olmasın.
+
+	chmod 760 dosya1 dosya2
+	ls -l
+
+	-rwxrw----  1 cemdirman  staff     0 27 Eyl 22:45 dosya1
+    -rwxrw----  1 cemdirman  staff     0 27 Eyl 22:45 dosya2
 
 
 
